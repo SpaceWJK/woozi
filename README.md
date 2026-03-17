@@ -1,58 +1,39 @@
-# Project Build Guide
+# Woozi — Web Projects
 
-## Tech Stack
+Woozi가 만든 웹페이지들을 보관하고 호스팅하는 레포지토리입니다.
+`main` 브랜치에 push하면 GitHub Actions가 자동으로 빌드 & 배포합니다.
 
-This project is built using the following technologies:
+> **주의**: 각 프로젝트 폴더는 완전히 독립적으로 관리됩니다. 폴더 간 파일 이동이나 혼합은 절대 금지입니다.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## Prerequisites
+## 프로젝트 목록
 
-Make sure your system has Node.js and npm installed.
+### 📁 `__Portfolio/` — QA 전략가 포트폴리오
 
-We recommend using nvm to install Node.js: [nvm Installation Guide](https://github.com/nvm-sh/nvm#installing-and-updating)
+QA 전략가로서의 경력과 역량을 소개하는 개인 포트폴리오 웹사이트입니다.
 
-## Install Dependencies
+- **기술 스택**: React + TypeScript + shadcn/ui
+- **호스팅**: [spacewjk.github.io/woozi/](https://spacewjk.github.io/woozi/)
 
-```sh
-npm install
-```
+---
 
-## Development Server
+### 📁 `Librarian/` — Web Librarian 서고
 
-Start the development server with hot reload and instant preview:
+도서관 책장을 모티프로 한 웹 서고입니다. 3D 책등을 클릭하면 마크다운 기반의 책 내용을 열람할 수 있으며, 천장 전등을 이용한 테마 전환(밝음/어두움) 기능을 제공합니다.
 
-```sh
-npm run dev
-```
+- **기술 스택**: React + Vite + Tailwind CSS + Framer Motion
+- **호스팅**: [spacewjk.github.io/woozi/librarian/](https://spacewjk.github.io/woozi/librarian/)
 
-## Build Project
+---
 
-Build for production:
-
-```sh
-npm run build
-```
-
-## Preview Build
-
-Preview the built project:
-
-```sh
-npm run preview
-```
-
-## Project Structure
+## 배포 구조
 
 ```
-src/
-├── components/     # UI Components
-├── pages/         # Page Components
-├── hooks/         # Custom Hooks
-├── lib/           # Utility Library
-└── main.tsx       # Application Entry Point
+woozi/
+├── __Portfolio/     → spacewjk.github.io/woozi/
+├── Librarian/       → spacewjk.github.io/woozi/librarian/
+└── (새 프로젝트)/    → spacewjk.github.io/woozi/{폴더명}/
 ```
+
+새 웹페이지를 추가할 때는 루트에 새 폴더를 만들고, `deploy.yml` 워크플로우에 빌드 단계를 추가하면 됩니다.

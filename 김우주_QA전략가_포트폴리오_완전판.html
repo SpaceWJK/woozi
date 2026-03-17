@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김우주(Woozi) - QA 전략가 포트폴리오</title>
+    <meta name="description" content="12년간 20여 개 게임 서비스 전체 수명주기를 경험한 QA 전문가의 포트폴리오">
+    <meta name="author" content="김우주(Woozi)">
+    <meta name="keywords" content="QA 전략가, 품질 보증, 게임 QA, 서비스 품질, QA 교육, 메트릭스">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: oklch(0.205 0.028 285.823);
+            --secondary: oklch(0.148 0.015 285.823);
+            --accent: oklch(0.647 0.199 200.975);
+            --background: oklch(0.041 0.006 285.823);
+            --foreground: oklch(0.98 0.013 285.823);
+            --muted: oklch(0.148 0.015 285.823);
+            --muted-foreground: oklch(0.647 0.013 285.823);
+            --card: oklch(0.041 0.006 285.823);
+            --card-foreground: oklch(0.98 0.013 285.823);
+            --popover: oklch(0.041 0.006 285.823);
+            --popover-foreground: oklch(0.98 0.013 285.823);
+            --border: oklch(0.148 0.015 285.823);
+            --input: oklch(0.148 0.015 285.823);
+            --ring: oklch(0.647 0.199 200.975);
+            --radius: 0.5rem;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: var(--foreground);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .col-span-full { grid-column: 1 / -1; }
+        .col-span-5 { grid-column: span 5; }
+        .col-span-7 { grid-column: span 7; }
+        
+        @media (max-width: 1024px) {
+            .col-span-5, .col-span-7 { grid-column: 1 / -1; }
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .neon-glow {
+            text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent), 0 0 30px var(--accent);
+        }
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--muted-foreground);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .lang-toggle {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-toggle:hover {
+            background: var(--primary);
+        }
+        
+        .main-content {
+            margin-top: 80px;
+        }
+        
+        .hero-section {
+            padding: 5rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--muted-foreground);
+            margin-bottom: 2rem;
+        }
+        
+        .hero-description {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            white-space: pre-line;
+        }
+        
+        .profile-card {
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .profile-image {
+            width: 256px;
+            height: 256px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            border: 2px solid rgba(var(--accent), 0.5);
+            box-shadow: 0 0 30px rgba(var(--accent), 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .profile-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .key-facts {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .fact-card {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .fact-icon {
+            width: 2rem;
+            height: 2rem;
+            color: var(--accent);
+            margin-right: 1rem;
+        }
+        
+        .fact-content h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .fact-content p {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--foreground);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--muted-foreground);
+            margin-bottom: 3rem;
+            max-width: 64rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .timeline-container {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), var(--primary));
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 3rem;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -2.5rem;
+            top: 1rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+        }
+        
+        .timeline-card {
+            padding: 2rem;
+        }
+        
+        .timeline-period {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-description {
+            color: var(--muted-foreground);
+            margin-bottom: 1rem;
+        }
+        
+        .career-section {
+            background: rgba(var(--muted), 0.2);
+        }
+        
+        .career-item {
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .career-item:hover {
+            border-color: rgba(var(--accent), 0.5);
+        }
+        
+        .career-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .career-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .career-company {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 1.125rem;
+        }
+        
+        .career-meta {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        .career-period {
+            background: var(--secondary);
+            color: var(--foreground);
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .career-stats {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+            margin-bottom: 0.5rem;
+        }
+        
+        .career-expand {
+            display: flex;
+            align-items: center;
+            color: var(--accent);
+            font-size: 0.875rem;
+        }
+        
+        .career-expand svg {
+            margin-left: 0.25rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .career-expand.expanded svg {
+            transform: rotate(180deg);
+        }
+        
+        .career-content {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .career-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        
+        .career-detail h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .career-detail p {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+        
+        .career-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+        
+        .career-details.expanded {
+            max-height: 400px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+        
+        .detail-card {
+            padding: 1rem;
+            border-left: 4px solid var(--accent);
+            background: rgba(var(--accent), 0.1);
+        }
+        
+        .detail-title {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .detail-grid {
+            display: grid;
+            gap: 1rem;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+        
+        .detail-item {
+            border-left: 2px solid rgba(var(--accent), 0.3);
+            padding-left: 1rem;
+        }
+        
+        .detail-item-title {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .detail-item-list {
+            display: grid;
+            gap: 0.25rem;
+        }
+        
+        .detail-item-list-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem;
+            border-radius: 4px;
+        }
+        
+        .detail-item-list-item::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .detail-item-list-item span {
+            font-size: 0.75rem;
+            color: var(--muted-foreground);
+        }
+        
+        .contact-section {
+            background: rgba(var(--muted), 0.2);
+            text-align: center;
+        }
+        
+        .download-button {
+            background: rgba(var(--accent), 0.8);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .download-button:hover {
+            background: rgba(var(--accent), 0.9);
+            transform: translateY(-2px);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+        
+        .contact-card {
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .contact-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            color: var(--accent);
+            margin: 0 auto 0.5rem;
+        }
+        
+        .contact-title {
+            font-weight: 500;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-info {
+            font-size: 0.75rem;
+            color: var(--muted-foreground);
+        }
+        
+        .footer {
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--muted-foreground);
+        }
+        
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .popup-content {
+            position: relative;
+        }
+        
+        .popup-image {
+            width: 520px;
+            height: 520px;
+            border-radius: 1rem;
+            border: 4px solid rgba(var(--accent), 0.5);
+            box-shadow: 0 0 60px rgba(var(--accent), 0.3);
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .popup-close:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            .profile-image { width: 200px; height: 200px; }
+            .popup-image { width: 90vw; height: 90vw; max-width: 400px; max-height: 400px; }
+            .nav-links { display: none; }
+            .career-header { flex-direction: column; gap: 1rem; }
+            .career-meta { align-items: flex-start; }
+        }
+        
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#hero" class="logo">김우주(Woozi)</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#timeline">Timeline</a></li>
+                    <li><a href="#career">Career</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="lang-toggle" onclick="toggleLanguage()">KO</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="container-grid">
+                <div class="col-span-7">
+                    <h1 class="hero-title">QA 전략가</h1>
+                    <p class="hero-subtitle">서비스 품질 전문가 & 시스템 설계자</p>
+                    <div class="hero-description">
+                        구조적 사고와 데이터 기반 품질 전략을 전문으로 하는 QA 전략가입니다.
+                        
+                        반응적 테스팅을 예측적 품질 엔지니어링으로 전환시키며, 
+                        12년간 20여 개 게임 서비스의 전체 수명주기를 경험했습니다.
+                        
+                        현재는 AI와 빅데이터를 활용한 예측적 품질 관리 체계 구축에 집중하고 있습니다.
+                    </div>
+                </div>
+                <div class="col-span-5">
+                    <div class="profile-card glass-card">
+                        <div>
+                            <img 
+                                src="https://skyagent-artifacts.skywork.ai/page/jz4kg3u7k7/images/WJKPS.png" 
+                                alt="김우주(Woozi) Profile" 
+                                class="profile-image"
+                                onclick="showImagePopup()"
+                            />
+                        </div>
+                        <h3 class="profile-title neon-glow">김우주(Woozi) Profile</h3>
+                        <div class="key-facts">
+                            <div class="fact-card glass-card">
+                                <div class="fact-content">
+                                    <h4>구조적 문제 해결 / Top 2% EF</h4>
+                                    <p>복잡한 문제를 체계적으로 분석하고 해결하는 구조적 사고력</p>
+                                </div>
+                            </div>
+                            <div class="fact-card glass-card">
+                                <div class="fact-content">
+                                    <h4>데이터 기반 의사결정</h4>
+                                    <p>정성적 QA 업무를 정량적 데이터로 전환하여 객관적 의사결정 지원</p>
+                                </div>
+                            </div>
+                            <div class="fact-card glass-card">
+                                <div class="fact-content">
+                                    <h4>교육 및 조직 개발</h4>
+                                    <p>체계적인 커리큘럼 설계와 단계별 역량 개발을 통한 QA 전문가 양성</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container-grid">
+                <div class="col-span-full">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">
+                        구조적 사고와 데이터 기반 접근을 통해 서비스 품질을 혁신하는 QA 전략가입니다.
+                    </p>
+                </div>
+                
+                <div class="col-span-7">
+                    <div class="hero-description">
+                        저는 **구조적 문제 해결 능력**과 **데이터 기반 의사결정**을 핵심 역량으로 하는 QA 전략가입니다.
+
+                        **12년간의 게임 서비스 경험**을 통해 단순한 기능 검증을 넘어서, 서비스 전체의 사용자 경험과 비즈니스 성과를 통합적으로 관리하는 **확장된 QA 체계**를 구축해왔습니다.
+
+                        특히 **정성적 QA 업무를 정량적 데이터로 전환**하여 예측 가능하고 측정 가능한 품질 관리 시스템을 만드는 것이 저의 전문 분야입니다.
+
+                        현재는 **AI와 빅데이터를 활용한 예측적 품질 관리**라는 새로운 패러다임을 연구하고 있으며, 이를 통해 QA를 단순한 문제 발견 역할에서 **서비스 경쟁력을 선제적으로 창출하는 전략적 자산**으로 전환시키고자 합니다.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="section">
+            <div class="container-grid">
+                <div class="col-span-full">
+                    <h2 class="section-title">Growth Timeline</h2>
+                    <p class="section-subtitle">
+                        QA 전문가로 성장해온 여정과 각 단계에서의 핵심 인사이트를 소개합니다.
+                    </p>
+                </div>
+                
+                <div class="col-span-full">
+                    <div class="timeline-container">
+                        <div class="timeline-line"></div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card glass-card">
+                                <div class="timeline-period">어린 시절</div>
+                                <h3 class="timeline-title">체계적 사고의 기초</h3>
+                                <p class="timeline-description">
+                                    어린 시절부터 복잡한 문제를 단계별로 분해하여 해결하는 것을 좋아했습니다. 
+                                    이러한 성향이 후에 구조적 QA 사고의 기반이 되었습니다.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card glass-card">
+                                <div class="timeline-period">성인 초기</div>
+                                <h3 class="timeline-title">데이터 분석 경험</h3>
+                                <p class="timeline-description">
+                                    스포츠 토토 분석을 통해 데이터 기반 예측과 패턴 분석의 중요성을 깨달았습니다. 
+                                    이 경험이 후에 QA 메트릭스 체계화의 토대가 되었습니다.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card glass-card">
+                                <div class="timeline-period">IT 경력 초기</div>
+                                <h3 class="timeline-title">QA 분야 진입</h3>
+                                <p class="timeline-description">
+                                    IT 업계에 진입하면서 QA라는 분야를 만났습니다. 
+                                    체계적 사고와 데이터 분석 경험이 QA 업무와 완벽하게 맞아떨어짐을 발견했습니다.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card glass-card">
+                                <div class="timeline-period">QA 전문가 10년+</div>
+                                <h3 class="timeline-title">확장된 QA 체계 구축</h3>
+                                <p class="timeline-description">
+                                    10년 이상의 QA 경력을 통해 기존 업계 표준을 뛰어넘는 개념적 사고가 확장되었습니다. 
+                                    현재는 AI 기술을 활용한 예측적 품질 관리 체계를 구상하고 있습니다.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card glass-card">
+                                <div class="timeline-period">미래</div>
+                                <h3 class="timeline-title">데이터 기반 게임 서비스 품질 혁신</h3>
+                                <p class="timeline-description">
+                                    AI와 빅데이터를 활용한 예측적 품질 관리 체계로 게임 서비스 품질 관리 분야의 
+                                    패러다임 전환을 주도하는 것이 목표입니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Section -->
+        <section id="career" class="career-section section">
+            <div class="container-grid">
+                <div class="col-span-full">
+                    <h2 class="section-title">Career & Portfolio</h2>
+                    <p class="section-subtitle">
+                        12년간 20여 개 게임 서비스 전체 수명주기를 경험한 QA 전문가의 경력과 주요 성과
+                    </p>
+                </div>
+                
+                <div class="col-span-full">
+                    <div class="career-item glass-card" onclick="toggleCareerDetails(0)">
+                        <div style="padding: 2rem;">
+                            <div class="career-header">
+                                <div>
+                                    <h3 class="career-title">게임 서비스 경력</h3>
+                                    <p class="career-company">다수 게임 QA Management</p>
+                                </div>
+                                <div class="career-meta">
+                                    <div class="career-period">2013 - 2025</div>
+                                    <div class="career-stats">20개 게임</div>
+                                    <div class="career-expand" id="expand-0">
+                                        <span>상세보기</span>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6,9 12,15 18,9"></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="career-content">
+                                <div class="career-detail">
+                                    <h4>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                        Scope
+                                    </h4>
+                                    <p>20여 개 게임 서비스의 론칭 전부터 서비스 종료까지 전체 수명주기 QA 담당 (최대 4개 프로젝트 동시 병렬 수행)</p>
+                                </div>
+                                <div class="career-detail">
+                                    <h4>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                                        </svg>
+                                        Impact
+                                    </h4>
+                                    <p>글로벌 서비스, 마켓 관리, 크로스 플랫폼 QA, LQA 등 다양한 서비스 경험 (4-5개 프로젝트 동시 관리)</p>
+                                </div>
+                                <div class="career-detail">
+                                    <h4>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"></polygon>
+                                        </svg>
+                                        Style
+                                    </h4>
+                                    <p>전체 서비스 수명주기 관리, 다중 이해관계자 협업, 병렬 프로젝트 관리, 예측적 리스크 관리</p>
+                                </div>
+                                <div style="display: flex; align-items: center; margin-top: 1rem; font-size: 0.75rem; color: var(--muted-foreground);">
+                                    <span style="margin-right: 0.25rem;">🎮</span>
+                                    클릭하면 연도별 게임 리스트를 볼 수 있습니다
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="career-details" id="details-0">
+                            <div class="detail-card">
+                                <h4 class="detail-title">연도별 게임 서비스 경력</h4>
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">2013년 (2개 게임)</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>Heroes' Dignity</span></div>
+                                            <div class="detail-item-list-item"><span>Moa Moa Dragon</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">2014년 (2개 게임)</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>Qurare</span></div>
+                                            <div class="detail-item-list-item"><span>Crazy Mon</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">2015년 (4개 게임)</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>Dragon Fate</span></div>
+                                            <div class="detail-item-list-item"><span>Bunny Pop</span></div>
+                                            <div class="detail-item-list-item"><span>Ghost Hunter</span></div>
+                                            <div class="detail-item-list-item"><span>Tap Tap Disco</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">2016년 (4개 게임)</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>Ton Ton Pirates</span></div>
+                                            <div class="detail-item-list-item"><span>King's Road</span></div>
+                                            <div class="detail-item-list-item"><span>Giant War Chronicles</span></div>
+                                            <div class="detail-item-list-item"><span>Everyone's Friday Night</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">2017년 (4개 게임)</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>I Love Club</span></div>
+                                            <div class="detail-item-list-item"><span>The Musician</span></div>
+                                            <div class="detail-item-list-item"><span>Puzzle Knights</span></div>
+                                            <div class="detail-item-list-item"><span>War Rain</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">2018년 (2개 게임)</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>Epic Seven</span></div>
+                                            <div class="detail-item-list-item"><span>Snow Cube</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">2024년 (1개 게임)</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>Gran Saga Raising: Knights x Knights (Publishing contract terminated before launch)</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">2025년 (1개 게임)</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>Chaos Zero Nightmare</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="career-item glass-card" onclick="toggleCareerDetails(1)">
+                        <div style="padding: 2rem;">
+                            <div class="career-header">
+                                <div>
+                                    <h3 class="career-title">QA 교육 및 커리큘럼 설계</h3>
+                                    <p class="career-company">신입 ~ 리드급 교육 진행</p>
+                                </div>
+                                <div class="career-meta">
+                                    <div class="career-period">2018 - 2024</div>
+                                    <div class="career-stats">5개 과정</div>
+                                    <div class="career-expand" id="expand-1">
+                                        <span>상세보기</span>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6,9 12,15 18,9"></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="career-content">
+                                <div class="career-detail">
+                                    <h4>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                        Scope
+                                    </h4>
+                                    <p>신입부터 리드급까지 단계별 QA 전문가 양성을 위한 12개 모듈 커리큘럼 설계 및 교육 진행</p>
+                                </div>
+                                <div class="career-detail">
+                                    <h4>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                                        </svg>
+                                        Impact
+                                    </h4>
+                                    <p>신입 QA 70여 명 양성, 리드급 QA 5명 양성, 체계적 QA 방법론 정착</p>
+                                </div>
+                                <div class="career-detail">
+                                    <h4>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"></polygon>
+                                        </svg>
+                                        Style
+                                    </h4>
+                                    <p>실무 중심 교육, 단계별 역량 개발, 사고 전환 관문 설계</p>
+                                </div>
+                                <div style="display: flex; align-items: center; margin-top: 1rem; font-size: 0.75rem; color: var(--muted-foreground);">
+                                    <span style="margin-right: 0.25rem;">📚</span>
+                                    클릭하면 교육 커리큘럼을 볼 수 있습니다
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="career-details" id="details-1">
+                            <div class="detail-card">
+                                <h4 class="detail-title">교육 커리큘럼 체계</h4>
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">LEVEL 0. QA Foundation (신입 공통) - 2개 과목</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>1. Introduction to Quality Assurance - QA의 역할과 책임, 품질의 정의, QA 마인드셋 ("QA가 왜 존재하는가"를 먼저 각인)</span></div>
+                                            <div class="detail-item-list-item"><span>2. Fundamentals of Software Testing - 테스팅의 정의와 목적, 오류/결함의 개념, SDLC와 테스트의 관계 (테스트라는 행위의 개념적 지도 제공)</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">LEVEL 1. Core Testing Skills (주니어) - 3개 과목</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>3. Software Testing Lifecycle & Standards - 테스트 라이프사이클, 표준 기반 테스트 흐름, 테스트 종료 기준</span></div>
+                                            <div class="detail-item-list-item"><span>4. Test Design & Techniques - 테스트 기법, 테스트 설계 기법, 리스크 기반 테스팅 ("어디를, 왜 테스트하는가" 판단 가능)</span></div>
+                                            <div class="detail-item-list-item"><span>5. Practical Test Execution - 기획 리뷰 실무, TC & Checklist 작성, BTS(Jira) 실습 (이론 → 산출물 연결)</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">LEVEL 2. QA in Real Service Environment (중급) - 3개 과목</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>6. QA Workflow & Service Operations - QA 프로세스 전반, QA 데이터 관리, 마켓 이슈 & 서비스 장애 대응, 밸런스 QA / 웹 서비스 QA (QA가 서비스 운영의 일부임을 인식)</span></div>
+                                            <div class="detail-item-list-item"><span>7. Mobile Platform Essentials for QA - Android 플랫폼 이해, iOS 플랫폼 이해, 플랫폼 제약과 테스트 전략</span></div>
+                                            <div class="detail-item-list-item"><span>8. QA Team Systems & R&R - QA팀 운영 구조, 신규/업데이트/점검 프로세스, Role & Responsibility (개인 QA → 조직 QA 전환)</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">LEVEL 3. Advanced Testing Practice (중급 → 시니어) - 1개 과목</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>9. Advanced Testing Strategies - Black-box Testing Practice, Exploratory Testing Practice, List-based Testing Practice ("상황에 맞는 테스트 전략 선택")</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">LEVEL 4. QA Leadership & Expertise (리드 후보) - 3개 과목</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>10. Quality Risk Management & Decision Making - 품질 리스크 식별, 테스트 결과 해석, 의사결정 지원 역할</span></div>
+                                            <div class="detail-item-list-item"><span>11. Advanced Testing Theory - Gray Box Testing 이론 & 사례, 퍼블리싱 환경 테스트 전략</span></div>
+                                            <div class="detail-item-list-item"><span>12. Operational Excellence for QA Leaders - 효율적인 리소스 관리, 형상 관리 전략, 커뮤니케이션 스킬 & 상황 대응 (여기서부터 QA 리드/시니어 포지션)</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="career-item glass-card" onclick="toggleCareerDetails(2)">
+                        <div style="padding: 2rem;">
+                            <div class="career-header">
+                                <div>
+                                    <h3 class="career-title">QA 메트릭스 체계화</h3>
+                                    <p class="career-company">QA 데이터 정량적 수치화 → 대시보드 구축</p>
+                                </div>
+                                <div class="career-meta">
+                                    <div class="career-period">2020 - 2025</div>
+                                    <div class="career-stats">4개 카테고리</div>
+                                    <div class="career-expand" id="expand-2">
+                                        <span>상세보기</span>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6,9 12,15 18,9"></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="career-content">
+                                <div class="career-detail">
+                                    <h4>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                        Scope
+                                    </h4>
+                                    <p>정성적 QA 업무를 데이터 기반 정량적 지표로 전환하는 체계 구축</p>
+                                </div>
+                                <div class="career-detail">
+                                    <h4>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                                        </svg>
+                                        Impact
+                                    </h4>
+                                    <p>QA 효율성 300% 향상, 데이터 기반 의사결정 체계 정착, ROI 측정 가능한 QA 체계 구축</p>
+                                </div>
+                                <div class="career-detail">
+                                    <h4>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"></polygon>
+                                        </svg>
+                                        Style
+                                    </h4>
+                                    <p>데이터 사이언스 접근법, 예측 모델링, 실시간 대시보드 구축</p>
+                                </div>
+                                <div style="display: flex; align-items: center; margin-top: 1rem; font-size: 0.75rem; color: var(--muted-foreground);">
+                                    <span style="margin-right: 0.25rem;">📈</span>
+                                    클릭하면 메트릭스 체계를 볼 수 있습니다
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="career-details" id="details-2">
+                            <div class="detail-card">
+                                <h4 class="detail-title">메트릭스 체계 분류</h4>
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">품질 지표 (3개 지표)</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>결함 밀도 (0.2/KLOC 달성)</span></div>
+                                            <div class="detail-item-list-item"><span>커버리지 비율 (92% 달성)</span></div>
+                                            <div class="detail-item-list-item"><span>사용자 만족도 지수 (4.7/5.0)</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">효율성 지표 (3개 지표)</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>테스트 자동화율 (78%)</span></div>
+                                            <div class="detail-item-list-item"><span>이슈 해결 시간 (1.5일)</span></div>
+                                            <div class="detail-item-list-item"><span>QA 생산성 지수 (1.3x 향상)</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">비즈니스 지표 (3개 지표)</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>QA ROI (250%)</span></div>
+                                            <div class="detail-item-list-item"><span>예방된 비용 ($500K)</span></div>
+                                            <div class="detail-item-list-item"><span>서비스 안정성 지수 (700점)</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-item-title">예측 지표 (3개 지표)</div>
+                                        <div class="detail-item-list">
+                                            <div class="detail-item-list-item"><span>위험 예측 정확도 (예측 vs 실제 품질 비교)</span></div>
+                                            <div class="detail-item-list-item"><span>실패 방지율 (현재 품질 기반)</span></div>
+                                            <div class="detail-item-list-item"><span>품질 트렌드 분석 (시간별 추세)</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section section">
+            <div class="container-grid">
+                <div class="col-span-full">
+                    <h2 class="section-title">Contact</h2>
+                </div>
+                
+                <div class="col-span-full">
+                    <p style="font-size: 1.125rem; color: var(--muted-foreground); margin-bottom: 2rem; max-width: 64rem; margin-left: auto; margin-right: auto; text-align: center;">
+                        협업, 리드 포지션, 서비스 품질 전략/자동화에 대한 논의가 필요하시면 언제든지 편하게 연락주세요.
+                    </p>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                        <button class="download-button" onclick="downloadHTML()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7,10 12,15 17,10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Download Resume / CV
+                        </button>
+                    </div>
+                    
+                    <div class="contact-grid">
+                        <div class="contact-card glass-card" onclick="window.location.href = 'mailto:mirea01977@gmail.com'">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <div class="contact-title">Email</div>
+                            <div class="contact-info">mirea01977@gmail.com</div>
+                        </div>
+                        <div class="contact-card glass-card" onclick="window.open('https://www.linkedin.com/in/%EC%9A%B0%EC%A3%BC-%EA%B9%80-b7a711115/', '_blank')">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                            <div class="contact-title">LinkedIn</div>
+                            <div class="contact-info">LinkedIn Profile</div>
+                        </div>
+                        <div class="contact-card glass-card" onclick="window.open('https://github.com/SpaceWJK/', '_blank')">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                            <div class="contact-title">GitHub</div>
+                            <div class="contact-info">GitHub Repository</div>
+                        </div>
+                        <div class="contact-card glass-card" onclick="window.open('https://notion.so/woozi-qa-portfolio', '_blank')">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15,3 21,3 21,9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                            <div class="contact-title">Notion</div>
+                            <div class="contact-info">Notion Portfolio</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-grid">
+            <div class="col-span-full">
+                <p>&copy; 2026 김우주(Woozi). Designed for quality excellence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Popup -->
+    <div id="imagePopup" class="popup-overlay hidden" onclick="hideImagePopup()">
+        <div class="popup-content">
+            <img 
+                src="https://skyagent-artifacts.skywork.ai/page/jz4kg3u7k7/images/WJKPS.png" 
+                alt="김우주(Woozi) Profile - 확대 이미지" 
+                class="popup-image"
+                onclick="event.stopPropagation()"
+            />
+            <button class="popup-close" onclick="hideImagePopup()">×</button>
+        </div>
+    </div>
+
+    <script>
+        // Language toggle
+        let currentLanguage = 'ko';
+        
+        function toggleLanguage() {
+            // This is a simplified version - in the actual React app, this would switch all content
+            const button = document.querySelector('.lang-toggle');
+            if (currentLanguage === 'ko') {
+                currentLanguage = 'en';
+                button.textContent = 'EN';
+            } else {
+                currentLanguage = 'ko';
+                button.textContent = 'KO';
+            }
+        }
+
+        // Image popup
+        function showImagePopup() {
+            document.getElementById('imagePopup').classList.remove('hidden');
+            // Auto close after 3 seconds
+            setTimeout(() => {
+                hideImagePopup();
+            }, 3000);
+        }
+
+        function hideImagePopup() {
+            document.getElementById('imagePopup').classList.add('hidden');
+        }
+
+        // Career details toggle
+        function toggleCareerDetails(index) {
+            const details = document.getElementById(`details-${index}`);
+            const expand = document.getElementById(`expand-${index}`);
+            
+            if (details.classList.contains('expanded')) {
+                details.classList.remove('expanded');
+                expand.classList.remove('expanded');
+            } else {
+                // Close all other details
+                document.querySelectorAll('.career-details').forEach(detail => {
+                    detail.classList.remove('expanded');
+                });
+                document.querySelectorAll('.career-expand').forEach(exp => {
+                    exp.classList.remove('expanded');
+                });
+                
+                // Open clicked details
+                details.classList.add('expanded');
+                expand.classList.add('expanded');
+            }
+        }
+
+        // Download HTML
+        function downloadHTML() {
+            const htmlContent = document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `김우주_QA전략가_포트폴리오_${new Date().toISOString().split('T')[0]}.html`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

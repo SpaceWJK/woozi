@@ -1216,7 +1216,7 @@ const Index = () => {
                 <div className="text-center mb-6">
                   <div className="mb-4">
                     <img 
-                      src="/images/WJKPS.png" 
+                      src={`${import.meta.env.BASE_URL}images/WJKPS.png`} 
                       alt="김우주(Woozi) Profile" 
                       className="w-64 h-64 rounded-full mx-auto object-cover border-2 border-accent/50 shadow-lg shadow-accent/20 cursor-pointer hover:scale-105 transition-transform duration-300"
                       onClick={handleImageClick}
@@ -1654,7 +1654,7 @@ const Index = () => {
         >
           <div className="relative">
             <img 
-              src="/images/WJKPS.png" 
+              src={`${import.meta.env.BASE_URL}images/WJKPS.png`} 
               alt="김우주(Woozi) Profile - 확대 이미지" 
               className="w-[520px] h-[520px] rounded-2xl object-cover border-4 border-accent/50 shadow-2xl shadow-accent/30"
               onClick={(e) => e.stopPropagation()}

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "claude-architect",
+    "title": "Claude Architect가 되고 싶다면",
+    "subtitle": "풀 코스",
+    "author": "hoeem",
+    "color": "#3a4a5c",
+    "spineColor": "#2d3a4a",
+    "labelColor": "#c4956a",
+    "folder": "claude-architect",
+    "file": "index.md",
+    "tags": ["AI", "Claude", "Architecture"]
+  }
+]

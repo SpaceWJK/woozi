@@ -1,0 +1,305 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ===== 3테마 체계: dark (전등 OFF) / lit (전등 ON) ===== */
+  :root,
+  [data-theme="dark"] {
+    --color-bg: #13110e;
+    --color-shelf: #2a2520;
+    --color-surface: #1e1a16;
+    --color-cream: #e8e0d4;
+    --color-muted: #7a7268;
+    --color-accent: #b8845a;
+    --color-accent-hover: #c89468;
+    --color-divider: rgba(255, 255, 255, 0.08);
+    --color-text-primary: #e8e0d4;
+    --color-text-secondary: rgba(232, 224, 212, 0.9);
+    --color-code-bg: rgba(255, 255, 255, 0.05);
+    --shelf-gradient-from: #241e18;
+    --shelf-gradient-to: #1a1610;
+    --shelf-front-from: #2e2620;
+    --shelf-front-to: #241e18;
+    --shelf-side: #18140e;
+    --light-effect: transparent;
+    --vignette-opacity: 0;
+    --lamp-glow: transparent;
+  }
+
+  [data-theme="lit"] {
+    --color-bg: #1a1714;
+    --color-shelf: #332c24;
+    --color-surface: #242018;
+    --color-cream: #ede6da;
+    --color-muted: #a09888;
+    --color-accent: #c8945a;
+    --color-accent-hover: #d8a46a;
+    --color-divider: rgba(255, 255, 255, 0.10);
+    --color-text-primary: #ede6da;
+    --color-text-secondary: rgba(237, 230, 218, 0.9);
+    --color-code-bg: rgba(255, 255, 255, 0.06);
+    --shelf-gradient-from: #44392e;
+    --shelf-gradient-to: #332c24;
+    --shelf-front-from: #544838;
+    --shelf-front-to: #44392e;
+    --shelf-side: #332a20;
+    --light-effect: rgba(255, 210, 140, 0.12);
+    --vignette-opacity: 1;
+    --lamp-glow: rgba(255, 200, 100, 0.35);
+  }
+
+  /* 노이즈 텍스처 + 조명 */
+  body {
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse 60% 50% at 50% 0%, var(--light-effect) 0%, transparent 100%);
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    transition: background-color 0.8s ease, color 0.5s ease;
+  }
+
+  ::selection {
+    background: rgba(184, 132, 90, 0.3);
+  }
+
+  /* 스크롤바 */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(184, 132, 90, 0.2); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(184, 132, 90, 0.4); }
+  * { scrollbar-width: thin; scrollbar-color: rgba(184, 132, 90, 0.2) transparent; }
+
+  /* prefers-reduced-motion 전역 킬스위치 */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* ===== 비네트 오버레이 (전등 ON시 좌우 어둡게) ===== */
+  .vignette-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(
+      ellipse 70% 60% at 50% 20%,
+      transparent 30%,
+      rgba(10, 8, 6, 0.5) 100%
+    );
+    opacity: var(--vignette-opacity);
+    transition: opacity 0.8s ease;
+  }
+
+  /* ===== 전등 ===== */
+  .ceiling-lamp-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .ceiling-lamp-svg {
+    pointer-events: none;
+    filter: drop-shadow(0 0 0 transparent);
+    transition: filter 0.6s ease;
+  }
+
+  .ceiling-lamp-svg.lamp-on {
+    filter: drop-shadow(0 4px 20px rgba(255, 200, 100, 0.4));
+  }
+
+  .ceiling-lamp-button {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 10;
+  }
+
+  .lamp-bulb-glass {
+    transition: fill 0.4s ease;
+  }
+
+  .lamp-glow-inner {
+    animation: lamp-pulse 3s ease-in-out infinite;
+  }
+
+  .lamp-glow-outer {
+    animation: lamp-pulse 3s ease-in-out infinite 0.5s;
+  }
+
+  @keyframes lamp-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  /* ===== 책장 프레임 ===== */
+  .bookcase {
+    position: relative;
+    background: linear-gradient(180deg, var(--shelf-side) 0%, rgba(20,16,12,0.6) 100%);
+    border: 3px solid var(--shelf-side);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow:
+      inset 0 0 30px rgba(0,0,0,0.3),
+      4px 4px 20px rgba(0,0,0,0.5),
+      -4px 4px 20px rgba(0,0,0,0.5);
+  }
+
+  /* 책장 상단 처마 */
+  .bookcase-top {
+    height: 8px;
+    background: linear-gradient(to bottom, var(--shelf-front-from), var(--shelf-gradient-from));
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.3);
+    margin: 0 -3px;
+  }
+
+  /* 선반판 */
+  .shelf-board {
+    position: relative;
+    height: 16px;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 40px,
+        rgba(0,0,0,0.03) 40px,
+        rgba(0,0,0,0.03) 41px
+      ),
+      linear-gradient(to bottom, var(--shelf-gradient-from), var(--shelf-gradient-to));
+    box-shadow:
+      0 4px 12px rgba(0,0,0,0.4),
+      0 1px 3px rgba(0,0,0,0.3),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  .shelf-board::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(to bottom, var(--shelf-front-from), var(--shelf-front-to));
+    border-radius: 0 0 2px 2px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  }
+
+  /* 선반 위 책 영역 */
+  .shelf-books {
+    display: flex;
+    align-items: flex-end;
+    padding: 0 12px;
+    min-height: 220px;
+    position: relative;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .shelf-books::-webkit-scrollbar { display: none; }
+
+  /* ===== 3D 책 ===== */
+  .book-3d {
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    perspective: 600px;
+  }
+
+  .book-spine {
+    position: relative;
+    border-radius: 3px 2px 2px 3px;
+    box-shadow:
+      2px 0 4px rgba(0,0,0,0.3),
+      inset -2px 0 4px rgba(0,0,0,0.15),
+      inset 2px 0 4px rgba(255,255,255,0.05);
+    overflow: hidden;
+  }
+
+  .book-spine::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0,0,0,0.02) 3px,
+        rgba(0,0,0,0.02) 4px
+      );
+    pointer-events: none;
+  }
+
+  .book-side {
+    position: absolute;
+    top: 2px;
+    right: -6px;
+    width: 6px;
+    bottom: 2px;
+    border-radius: 0 2px 2px 0;
+    transform: rotateY(0deg);
+    box-shadow: 1px 0 2px rgba(0,0,0,0.2);
+  }
+
+  .book-top {
+    position: absolute;
+    top: -4px;
+    left: 2px;
+    right: -4px;
+    height: 4px;
+    border-radius: 2px 2px 0 0;
+    transform: skewX(-5deg);
+  }
+
+  .book-label {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 3px;
+    border-radius: 1px;
+    opacity: 0.7;
+  }
+
+  /* (비활성 장식 책은 .book-3d + .book-spine 구조 재사용) */
+
+  /* ===== 마크다운 본문 ===== */
+  .prose-librarian {
+    line-height: 1.8;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* ===== 미니 테마 토글 (BookViewer용) ===== */
+  .theme-toggle-mini {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--color-divider);
+    background: transparent;
+    color: var(--color-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .theme-toggle-mini:hover {
+    color: var(--color-cream);
+    border-color: var(--color-accent);
+  }
+
+  /* sr-only는 Tailwind 내장 유틸리티 사용 */
+}

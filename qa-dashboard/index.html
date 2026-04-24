@@ -479,7 +479,7 @@ footer .foot-meta {
     </div>
     <div class="cover-meta">
       Document<br>
-      <strong>v1.0 · 2026.04</strong><br>
+      <strong>v2.0 · 2026.04</strong><br>
       설계 기술서
     </div>
   </div>
@@ -522,7 +522,7 @@ footer .foot-meta {
       <div class="cover-kpi-label">데이터 모델</div>
     </div>
     <div class="cover-kpi">
-      <div class="cover-kpi-num">5<span class="unit">외부</span></div>
+      <div class="cover-kpi-num">4<span class="unit">외부</span></div>
       <div class="cover-kpi-label">시스템 연동</div>
     </div>
   </div>
@@ -536,11 +536,9 @@ footer .foot-meta {
   <a href="#s3">03 프로젝트</a>
   <a href="#s4">04 스택</a>
   <a href="#s5">05 아키텍처</a>
-  <a href="#s6">06 구조</a>
-  <a href="#s7">07 파이프라인</a>
-  <a href="#s8">08 라이선스</a>
+  <a href="#s7">06 파이프라인</a>
+  <a href="#s8">07 라이선스</a>
   <a href="#app">Appendix</a>
-  <a href="v2/" class="toc-ext" title="최신 버전 (v2.0) 보기" style="color:#ff3030;">v2.0 ↗</a>
   <a href="http://10.5.31.110:9100/" target="_blank" rel="noopener" class="toc-ext" title="사내 QA Dashboard 운영 주소 (사내망 전용)">QA-Dashboard ↗</a>
   <a href="http://10.5.31.110:5176/Workflow-Management/login" target="_blank" rel="noopener" class="toc-ext" title="사내 QA Workflow 운영 주소 (사내망 전용)">QA-Workflow ↗</a>
 </nav>
@@ -807,7 +805,8 @@ footer .foot-meta {
     <p class="sub" style="margin-bottom: 32px; max-width: 860px;">
       각 프로젝트는 탭별로 표시 범위가 다르다.
       JIRA 이슈 통합은 모든 프로젝트를 지원하며,
-      REPORT · OPS는 주력 2개 프로젝트(EP7, CZN)에 한정된다.
+      REPORT · QA는 주력 2개 프로젝트(EP7, CZN)에 한정된다.
+      전체 프로젝트로 확장될 예정이다.
     </p>
 
     <table>
@@ -844,7 +843,7 @@ footer .foot-meta {
           <td style="text-align:center"><span class="badge on">✓</span></td>
           <td style="text-align:center"><span class="badge off">—</span></td>
           <td style="text-align:center"><span class="badge off">—</span></td>
-          <td style="text-align:center"><span class="badge off">—</span></td>
+          <td style="text-align:center"><span class="badge on">✓</span></td>
         </tr>
         <tr>
           <td><strong>Lordnine Asia</strong></td>
@@ -852,7 +851,7 @@ footer .foot-meta {
           <td style="text-align:center"><span class="badge on">✓</span></td>
           <td style="text-align:center"><span class="badge off">—</span></td>
           <td style="text-align:center"><span class="badge off">—</span></td>
-          <td style="text-align:center"><span class="badge off">—</span></td>
+          <td style="text-align:center"><span class="badge on">✓</span></td>
         </tr>
         <tr>
           <td><strong>Market Review</strong></td>
@@ -860,7 +859,7 @@ footer .foot-meta {
           <td style="text-align:center"><span class="badge on">✓</span></td>
           <td style="text-align:center"><span class="badge off">—</span></td>
           <td style="text-align:center"><span class="badge off">—</span></td>
-          <td style="text-align:center"><span class="badge off">—</span></td>
+          <td style="text-align:center"><span class="badge on">✓</span></td>
         </tr>
       </tbody>
     </table>
@@ -876,7 +875,7 @@ footer .foot-meta {
       </div>
       <div>
         <div class="n">3<span class="u">확장</span></div>
-        <div class="l">JIRA 단독 지원</div>
+        <div class="l">JIRA · OPS 지원</div>
       </div>
       <div>
         <div class="n">100<span class="u">%</span></div>
@@ -932,7 +931,6 @@ footer .foot-meta {
         <span class="chip">JIRA REST</span>
         <span class="chip">Confluence Wiki</span>
         <span class="chip">SharePoint Excel</span>
-        <span class="chip">GitHub Pages</span>
         <span class="chip">Claude API</span>
         <p style="margin-top: 16px; font-size: 13px;">
           모든 외부 연동은 <strong>환경 변수로 토큰 격리</strong>.
@@ -954,16 +952,6 @@ footer .foot-meta {
       </div>
     </div>
 
-    <div class="card" style="margin-top: 24px;">
-      <h3><span class="k">Design System</span>Black Ink Editorial</h3>
-      <p>
-        Playfair Display italic (heading) + Source Sans 3 (body). <strong>0px radius</strong>로
-        라운드를 배제하고 정보 위계를 날카롭게 유지. 카드·차트 그림자는 5% 미만으로
-        정적인 인상. 액션 색상은 <strong style="color:#16A34A">Green</strong>(정상) ·
-        <strong style="color:#DC2626">Red</strong>(중단/실패) ·
-        <strong style="color:#7C3AED">Purple</strong>(보류)로 3색 체계.
-      </p>
-    </div>
   </div>
 </section>
 
@@ -1045,28 +1033,30 @@ footer .foot-meta {
 
   <text x="900" y="142" text-anchor="middle" class="ink">Data Tier</text>
 
-  <!-- External Systems -->
-  <rect class="ext-fill" x="1020" y="60" width="150" height="60" rx="0"/>
-  <text x="1095" y="85" text-anchor="middle" class="label">JIRA</text>
-  <text x="1095" y="103" text-anchor="middle" class="sublabel">REST API</text>
+  <!-- External Systems — 원천 데이터 그룹 박스 -->
+  <rect x="1000" y="45" width="190" height="260" rx="0"
+        fill="rgba(255,48,48,0.04)" stroke="#ff3030" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="1095" y="32" text-anchor="middle" class="ink">External</text>
+  <text x="1095" y="325" text-anchor="middle" class="sublabel"
+        style="font-size: 10px; fill:#ff3030; letter-spacing: 0.14em; font-weight: 700;">SOURCE OF TRUTH · 원천 데이터</text>
 
-  <rect class="ext-fill" x="1020" y="140" width="150" height="60" rx="0"/>
-  <text x="1095" y="165" text-anchor="middle" class="label">Confluence Wiki</text>
-  <text x="1095" y="183" text-anchor="middle" class="sublabel">REST</text>
+  <rect class="ext-fill" x="1020" y="70" width="150" height="60" rx="0"/>
+  <text x="1095" y="95" text-anchor="middle" class="label">JIRA</text>
+  <text x="1095" y="113" text-anchor="middle" class="sublabel">REST API</text>
 
-  <rect class="ext-fill" x="1020" y="220" width="150" height="60" rx="0"/>
-  <text x="1095" y="245" text-anchor="middle" class="label">SharePoint</text>
-  <text x="1095" y="263" text-anchor="middle" class="sublabel">Excel XLSX</text>
+  <rect class="ext-fill" x="1020" y="150" width="150" height="60" rx="0"/>
+  <text x="1095" y="175" text-anchor="middle" class="label">Confluence Wiki</text>
+  <text x="1095" y="193" text-anchor="middle" class="sublabel">REST</text>
 
-  <rect class="ext-fill" x="1020" y="300" width="150" height="60" rx="0"/>
-  <text x="1095" y="325" text-anchor="middle" class="label">Claude API</text>
-  <text x="1095" y="343" text-anchor="middle" class="sublabel">Haiku 4.5</text>
+  <rect class="ext-fill" x="1020" y="230" width="150" height="60" rx="0"/>
+  <text x="1095" y="255" text-anchor="middle" class="label">SharePoint</text>
+  <text x="1095" y="273" text-anchor="middle" class="sublabel">Excel XLSX</text>
 
-  <rect class="ext-fill" x="1020" y="380" width="150" height="60" rx="0"/>
-  <text x="1095" y="405" text-anchor="middle" class="label">GitHub Pages</text>
-  <text x="1095" y="423" text-anchor="middle" class="sublabel">HTML iframe</text>
-
-  <text x="1095" y="52" text-anchor="middle" class="ink">External</text>
+  <!-- AI Service (원천 데이터 그룹 밖) -->
+  <rect class="ext-fill" x="1020" y="360" width="150" height="60" rx="0"/>
+  <text x="1095" y="385" text-anchor="middle" class="label">Claude API</text>
+  <text x="1095" y="403" text-anchor="middle" class="sublabel">Haiku 4.5</text>
+  <text x="1095" y="352" text-anchor="middle" class="ink" style="font-size: 10px;">AI Service</text>
 
   <!-- Arrows -->
   <path class="arrow" d="M180 265 L260 265" marker-end="url(#arr)"/>
@@ -1079,16 +1069,13 @@ footer .foot-meta {
   <path class="arrow" d="M740 275 L820 275" marker-end="url(#arr)"/>
   <path class="arrow" d="M740 345 L820 360" marker-end="url(#arr)"/>
 
-  <path class="arrow-mute" d="M740 220 L1020 90" marker-end="url(#arr-mute)"/>
-  <path class="arrow-mute" d="M740 240 L1020 170" marker-end="url(#arr-mute)"/>
-  <path class="arrow-mute" d="M740 270 L1020 250" marker-end="url(#arr-mute)"/>
-  <path class="arrow-mute" d="M740 310 L1020 330" marker-end="url(#arr-mute)"/>
-
-  <path class="arrow-mute" d="M350 330 Q 700 480 1020 420" marker-end="url(#arr-mute)"/>
-  <text x="680" y="475" text-anchor="middle" class="sublabel" style="font-size:10px;">iframe 임베드</text>
+  <path class="arrow-mute" d="M740 220 L1020 100" marker-end="url(#arr-mute)"/>
+  <path class="arrow-mute" d="M740 240 L1020 180" marker-end="url(#arr-mute)"/>
+  <path class="arrow-mute" d="M740 270 L1020 260" marker-end="url(#arr-mute)"/>
+  <path class="arrow-mute" d="M740 320 L1020 390" marker-end="url(#arr-mute)"/>
 </svg>
     </div>
-    <p class="caption">Container Diagram · 5 tiers · 5 external systems</p>
+    <p class="caption">Container Diagram · 5 tiers · 4 external systems · 원천 데이터 3종 그룹화</p>
 
     <div class="grid-2" style="margin-top: 40px;">
       <div class="card">
@@ -1230,114 +1217,12 @@ footer .foot-meta {
   </div>
 </section>
 
-<!-- ═════════════════════════════════════ §6 디렉토리 구조 ═════════════════════════════════════ -->
-<section class="doc" id="s6">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-no">06</div>
-      <div>
-        <div class="sec-title">
-          디렉토리 구조
-          <small>Repository Tree</small>
-        </div>
-      </div>
-    </div>
 
-<pre class="tree"><span class="dir">QA-Dashboard/</span>
-├── <span class="dir">server/</span>                        <span class="comment"># Python 백엔드 · 31개 모듈</span>
-│   ├── server.py                  <span class="comment"># HTTP 서버 진입점 + 라우팅</span>
-│   ├── quest_db.py                <span class="comment"># 퀘스트 CRUD + FSM + 히스토리</span>
-│   ├── quest_handler.py           <span class="comment"># /api/quest/* 핸들러</span>
-│   ├── subquest_db.py             <span class="comment"># 서브퀘스트 V2 (독립 테이블)</span>
-│   ├── episode_db.py              <span class="comment"># 에피소드 + 기여도 분배</span>
-│   ├── guild_db.py                <span class="comment"># 길드 · 멤버 · 포인트</span>
-│   ├── device_db.py               <span class="comment"># 디바이스 대여 FSM</span>
-│   ├── device_wiki.py             <span class="comment"># Wiki → Device 동기화</span>
-│   ├── jira_api.py                <span class="comment"># JIRA REST 프록시</span>
-│   ├── prh_aggregator.py          <span class="comment"># 마켓 검수 집계</span>
-│   ├── pbi_aggregator.py          <span class="comment"># QA PBI 엑셀 집계</span>
-│   ├── incident_aggregator.py     <span class="comment"># 장애 리포트 집계</span>
-│   ├── insights_handler.py        <span class="comment"># AI 품질 인사이트</span>
-│   ├── backup_manager.py          <span class="comment"># SQLite 백업 스케줄러</span>
-│   └── ...                        <span class="comment"># 기타 17개 모듈</span>
-│
-├── <span class="dir">src/</span>                           <span class="comment"># React 프론트엔드 · 124개 파일</span>
-│   ├── App.tsx                    <span class="comment"># 최상위 라우팅 + 탭 스위치</span>
-│   ├── main.tsx                   <span class="comment"># React 엔트리 + ErrorBoundary</span>
-│   ├── <span class="dir">components/</span>
-│   │   ├── layout/                <span class="comment"># Header · Sidebar</span>
-│   │   ├── cards/                 <span class="comment"># SummaryCards · Sparkline</span>
-│   │   ├── charts/                <span class="comment"># Priority · Status · Trend</span>
-│   │   ├── table/                 <span class="comment"># IssueTable</span>
-│   │   ├── blockers/              <span class="comment"># 블로커 이슈 패널</span>
-│   │   ├── pbi/                   <span class="comment"># QA 지표</span>
-│   │   ├── prh/                   <span class="comment"># 마켓 검수</span>
-│   │   ├── report/                <span class="comment"># 리포트 뷰어 (iframe)</span>
-│   │   ├── incident/              <span class="comment"># OPS 장애/핫픽스</span>
-│   │   ├── device/                <span class="comment"># 디바이스 재고/대여/트렌드</span>
-│   │   ├── quest/                 <span class="comment"># 퀘스트 보드/생성/상세/길드/에피소드</span>
-│   │   └── common/                <span class="comment"># 공용 유틸 컴포넌트</span>
-│   ├── <span class="dir">hooks/</span>                     <span class="comment"># 11개 데이터 훅</span>
-│   │   ├── useJiraData.ts
-│   │   ├── useQuest.ts
-│   │   ├── useEpisodes.ts
-│   │   ├── useGuild.ts
-│   │   ├── useMembers.ts
-│   │   ├── useDevice.ts
-│   │   ├── usePbiData.ts
-│   │   ├── usePrhData.ts
-│   │   ├── useReport.ts
-│   │   ├── useInsight.ts
-│   │   └── useIncidentData.ts
-│   ├── types/                     <span class="comment"># TypeScript 타입 (jira · guild)</span>
-│   ├── constants/                 <span class="comment"># 상수 (projects · quest · guild)</span>
-│   ├── utils/                     <span class="comment"># api · deadline · statsCalc</span>
-│   └── test/                      <span class="comment"># Vitest 셋업</span>
-│
-├── scripts/                       <span class="comment"># 운영 스크립트</span>
-├── tests/                         <span class="comment"># Python 통합 테스트 (pytest)</span>
-├── public/                        <span class="comment"># 정적 에셋</span>
-├── dist/                          <span class="comment"># Vite 프로덕션 빌드 (gitignored)</span>
-├── <span class="dir">docs/</span>                          <span class="comment"># GitHub Pages 설계 기술서 · 본 문서</span>
-├── backup/                        <span class="comment"># DB 자동 백업</span>
-│
-├── quest.db                       <span class="comment"># SQLite (gitignored)</span>
-├── device_rental.db               <span class="comment"># SQLite (gitignored)</span>
-│
-├── package.json                   <span class="comment"># Node 의존성 + scripts</span>
-├── vite.config.ts                 <span class="comment"># Vite + TypeScript Guard Plugin</span>
-├── tsconfig.app.json              <span class="comment"># 앱 TS 설정</span>
-├── tailwind.config.js             <span class="comment"># Tailwind v3</span>
-├── .env.example                   <span class="comment"># 환경 변수 템플릿</span>
-└── README.md
-</pre>
-
-    <div class="kpi-row" style="margin-top: 40px;">
-      <div>
-        <div class="n">31<span class="u">개</span></div>
-        <div class="l">백엔드 모듈</div>
-      </div>
-      <div>
-        <div class="n">124<span class="u">개</span></div>
-        <div class="l">프론트 파일</div>
-      </div>
-      <div>
-        <div class="n">11<span class="u">개</span></div>
-        <div class="l">React Hooks</div>
-      </div>
-      <div>
-        <div class="n">13<span class="u">개</span></div>
-        <div class="l">컴포넌트 도메인</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════════════════════════════════ §7 데이터 파이프라인 ═════════════════════════════════════ -->
+<!-- ═════════════════════════════════════ §6 데이터 파이프라인 (구 §7) ═════════════════════════════════════ -->
 <section class="doc" id="s7">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-no">07</div>
+      <div class="sec-no">06</div>
       <div>
         <div class="sec-title">
           데이터 파이프라인
@@ -1475,7 +1360,7 @@ footer .foot-meta {
 <section class="doc" id="s8">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-no">08</div>
+      <div class="sec-no">07</div>
       <div>
         <div class="sec-title">
           라이선스 · 기여 · 연락처
@@ -1533,10 +1418,10 @@ footer .foot-meta {
         </tr>
       </thead>
       <tbody>
-        <tr><td><strong>Episode</strong></td><td>분기 단위 목표. Quest들을 묶는 상위 개념.</td></tr>
-        <tr><td><strong>Quest</strong></td><td>메인 퀘스트. 2~4주 단위 작업 단위.</td></tr>
-        <tr><td><strong>SubQuest</strong></td><td>서브퀘스트. 1~3일 단위 세부 실행 단계.</td></tr>
-        <tr><td><strong>Guild</strong></td><td>국가별 QA 팀 그룹. 포인트 시스템으로 랭킹 집계.</td></tr>
+        <tr><td><strong>Episode</strong></td><td><strong>실(室) 단위의 조직 목표이자 최상위 목표.</strong> 여러 Quest를 하나의 큰 성과 흐름으로 묶는 상위 개념으로, 분기/반기 단위 조직 방향성을 제시한다. Episode가 닫히면 그 안의 모든 Quest 진행률이 기여도로 환산된다.</td></tr>
+        <tr><td><strong>Quest</strong></td><td><strong>각 팀 단위 또는 개인 단위의 실행 목표.</strong> Episode를 달성하기 위한 구체적 작업 단위로 담당자 · 기한 · 상태 · 진행률을 가진다. 일반적으로 2~4주 사이클로 운영된다.</td></tr>
+        <tr><td><strong>SubQuest</strong></td><td><strong>Quest를 진행하기 위한 세부 계획.</strong> 하나의 Quest를 구성하는 실행 가능한 작은 작업 단위로, 체크리스트 형태로 관리된다 (1~3일 단위).</td></tr>
+        <tr><td><strong>Guild</strong></td><td><strong>특정 목표를 가지고 조직된 개별 그룹.</strong> 국가 · 지역 · 프로젝트 등을 단위로 편성되며 멤버 · 포인트 · 랭킹 시스템으로 협업과 기여도를 집계한다.</td></tr>
         <tr><td><strong>FSM</strong></td><td>Finite State Machine. 퀘스트/대여 상태 전이 검증.</td></tr>
         <tr><td><strong>PRH</strong></td><td>Product Release Hub (Market Review) — 마켓 검수.</td></tr>
         <tr><td><strong>PBI</strong></td><td>QA 품질 지표 엑셀 (SharePoint 저장).</td></tr>
@@ -1555,7 +1440,7 @@ footer .foot-meta {
   <div class="wrap">
     <div class="foot-title">QA Issue Dashboard · <em>Design Tech Spec</em></div>
     <div class="foot-meta">
-      © 2026 QA Ops Team · Internal Documentation · v1.0 · 2026.04<br>
+      © 2026 QA Ops Team · Internal Documentation · v2.0 · 2026.04<br>
       Built by Woozi · Style · aq-marquee
     </div>
   </div>

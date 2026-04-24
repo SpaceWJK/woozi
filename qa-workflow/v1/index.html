@@ -534,8 +534,9 @@ footer .foot-meta {
   <a href="#s3">03 프로젝트</a>
   <a href="#s4">04 스택</a>
   <a href="#s5">05 아키텍처</a>
-  <a href="#s7">06 파이프라인</a>
-  <a href="#s8">07 라이선스</a>
+  <a href="#s6">06 구조</a>
+  <a href="#s7">07 파이프라인</a>
+  <a href="#s8">08 라이선스</a>
   <a href="#app">Appendix</a>
   <a href="http://10.5.31.110:9100/" target="_blank" rel="noopener" class="toc-ext" title="사내 QA Dashboard 운영 주소 (사내망 전용)">QA-Dashboard ↗</a>
   <a href="http://10.5.31.110:5176/Workflow-Management/login" target="_blank" rel="noopener" class="toc-ext" title="사내 QA Workflow 운영 주소 (사내망 전용)">QA-Workflow ↗</a>
@@ -852,8 +853,8 @@ footer .foot-meta {
 
     <p class="sub" style="margin-bottom: 32px; max-width: 860px;">
       4개 게임 프로젝트를 동일한 QA 사이클 안에서 병렬 관리한다.
-      모든 프로젝트는 공통 빌드 관리 · 일감 관리 · 히스토리 보존 · 트래픽 지표 ·
-      DB Data export를 공유한다.
+      모든 프로젝트는 공통 빌드 FSM · 일감 9종 · 기록 v3 카드 · ROI v0.2 ·
+      Tier A/B PBI export를 공유한다.
     </p>
 
     <table>
@@ -1218,12 +1219,114 @@ footer .foot-meta {
   </div>
 </section>
 
-
-<!-- ═════════════════════════════════════ §6 데이터 파이프라인 (구 §7) ═════════════════════════════════════ -->
-<section class="doc" id="s7">
+<!-- ═════════════════════════════════════ §6 디렉토리 구조 ═════════════════════════════════════ -->
+<section class="doc" id="s6">
   <div class="wrap">
     <div class="sec-head">
       <div class="sec-no">06</div>
+      <div>
+        <div class="sec-title">
+          디렉토리 구조
+          <small>Repository Tree</small>
+        </div>
+      </div>
+    </div>
+
+<pre class="tree"><span class="dir">Workflow-Management/</span>
+├── <span class="dir">client/</span>                        <span class="comment"># React 프론트엔드 (Vite)</span>
+│   ├── src/
+│   │   ├── App.tsx                <span class="comment"># 라우팅 루트</span>
+│   │   ├── main.tsx               <span class="comment"># Vite 진입점</span>
+│   │   ├── index.css              <span class="comment"># Tailwind + CSS 변수 (테마)</span>
+│   │   ├── <span class="dir">components/</span>
+│   │   │   ├── dashboard/         <span class="comment"># 대시보드 위젯 5종</span>
+│   │   │   ├── tasks/             <span class="comment"># 일감 목록/상세/폼/테이블</span>
+│   │   │   ├── projects/          <span class="comment"># 프로젝트 칸반/타임라인/라이브 탭</span>
+│   │   │   ├── builds/            <span class="comment"># 빌드 FSM/버전/메모</span>
+│   │   │   ├── calendar/          <span class="comment"># 월간/간트/빌드 타임라인</span>
+│   │   │   ├── team/              <span class="comment"># 팀원 현황 + PixelOffice</span>
+│   │   │   │   └── meeting/       <span class="comment"># 회의실 리스트/채팅/모달</span>
+│   │   │   ├── attendance/        <span class="comment"># 일일/월간/개인/프로젝트 근태</span>
+│   │   │   ├── history/           <span class="comment"># 기록 메뉴 (KPI 5 + 트렌드 5)</span>
+│   │   │   ├── qa-tool/           <span class="comment"># Epic7 / CZN / TestRail</span>
+│   │   │   ├── issues/            <span class="comment"># JIRA 조회</span>
+│   │   │   ├── notifications/     <span class="comment"># 실시간 알림 센터</span>
+│   │   │   ├── profile/           <span class="comment"># 개인 설정 5종</span>
+│   │   │   ├── settings/          <span class="comment"># 시스템 설정</span>
+│   │   │   ├── admin/             <span class="comment"># 회원 관리</span>
+│   │   │   ├── layout/            <span class="comment"># AppShell / Sidebar / Header</span>
+│   │   │   ├── testrail/          <span class="comment"># TestRail 업로드 UI</span>
+│   │   │   ├── theme/             <span class="comment"># 3종 테마 엔진</span>
+│   │   │   └── common/            <span class="comment"># 공통 UI (Badge / KPI / Modal)</span>
+│   │   ├── hooks/                 <span class="comment"># React Query + Socket.io 커스텀 훅</span>
+│   │   ├── stores/                <span class="comment"># Zustand (auth · ui)</span>
+│   │   ├── lib/                   <span class="comment"># api · socket · utils · holidays</span>
+│   │   ├── services/              <span class="comment"># API 래퍼</span>
+│   │   ├── types/                 <span class="comment"># 전역 TypeScript 타입</span>
+│   │   ├── pages/                 <span class="comment"># LoginPage</span>
+│   │   └── styles/themes/         <span class="comment"># 테마 CSS</span>
+│   ├── public/                    <span class="comment"># favicon · 404.html · _archive</span>
+│   ├── vite.config.ts             <span class="comment"># base · host:0.0.0.0 · /api proxy</span>
+│   └── package.json
+│
+├── <span class="dir">server/</span>                        <span class="comment"># Express 백엔드 (Prisma)</span>
+│   ├── src/
+│   │   ├── app.ts                 <span class="comment"># Express 앱 팩토리</span>
+│   │   ├── index.ts               <span class="comment"># 서버 진입점</span>
+│   │   ├── prisma.ts              <span class="comment"># Prisma 클라이언트</span>
+│   │   ├── socket.ts              <span class="comment"># Socket.io 초기화 + 이벤트</span>
+│   │   ├── routes/                <span class="comment"># auth · tasks · projects · team · calendar · leaves ·</span>
+│   │   │                          <span class="comment">#  settings · admin · builds · timer · attendance ·</span>
+│   │   │                          <span class="comment">#  meeting-rooms · history · live-builds · qa-tool</span>
+│   │   ├── services/              <span class="comment"># auth · task · project · team · build · timer ·</span>
+│   │   │                          <span class="comment">#  attendance · meeting · calendar-event · risk ·</span>
+│   │   │                          <span class="comment">#  email · notification · roi · jenkins</span>
+│   │   ├── middleware/            <span class="comment"># auth · error · validate</span>
+│   │   ├── types/                 <span class="comment"># 서버 타입 + Socket 이벤트</span>
+│   │   └── constants/             <span class="comment"># roi-config 등</span>
+│   ├── prisma/
+│   │   ├── schema.prisma          <span class="comment"># 23+ 모델</span>
+│   │   ├── seed.ts                <span class="comment"># 초기 데이터</span>
+│   │   └── migrations/            <span class="comment"># 마이그레이션 히스토리</span>
+│   ├── tests/                     <span class="comment"># 통합 테스트</span>
+│   └── package.json
+│
+├── Testrail/                      <span class="comment"># TestRail 업로드 리소스</span>
+├── <span class="dir">docs/</span>                          <span class="comment"># GitHub Pages 설계 기술서 · 본 문서</span>
+├── scripts/                       <span class="comment"># 레포 루트 운영 스크립트</span>
+├── _workspace/                    <span class="comment"># 개발 워크플로우 산출물</span>
+│
+├── ecosystem.config.cjs           <span class="comment"># pm2 설정 (server + client 2 앱)</span>
+├── .env.example                   <span class="comment"># 환경 변수 템플릿</span>
+└── README.md
+</pre>
+
+    <div class="kpi-row" style="margin-top: 40px;">
+      <div>
+        <div class="n">2<span class="u">앱</span></div>
+        <div class="l">pm2 상시 구동</div>
+      </div>
+      <div>
+        <div class="n">17<span class="u">도메인</span></div>
+        <div class="l">components 서브 디렉토리</div>
+      </div>
+      <div>
+        <div class="n">14<span class="u">라우트</span></div>
+        <div class="l">server/routes/</div>
+      </div>
+      <div>
+        <div class="n">23<span class="u">테이블</span></div>
+        <div class="l">Prisma Schema</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════ §7 데이터 파이프라인 ═════════════════════════════════════ -->
+<section class="doc" id="s7">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-no">07</div>
       <div>
         <div class="sec-title">
           데이터 파이프라인
@@ -1381,7 +1484,7 @@ else                    → <span style="color:rgba(245,241,232,0.5);">LOW</span
 <section class="doc" id="s8">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-no">07</div>
+      <div class="sec-no">08</div>
       <div>
         <div class="sec-title">
           라이선스 · 기여 · 연락처
